@@ -1,7 +1,7 @@
 <br>
 <div align="center">
 
-  <img src="https://raw.githubusercontent.com/你的用户名/dengzhou-no6-high/main/assets/logo.png" width="120" alt="邓州市第六高级中学 Logo" />
+  <img src="https://feiyang-sudo.github.io/dz6g/image/xh.jpg" width="120" alt="邓州市第六高级中学 Logo" />
   
   <h1>邓州市第六高级中学</h1>
   <h3>团结・奋进・求实・创新</h3>
