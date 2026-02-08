@@ -12,10 +12,10 @@
   </p>
 
   <p>
-    <a href="https://github.com/你的用户名/dengzhou-no6-high/releases">
+    <a href="https://feiyang-sudo.github.io/dz6g/releases">
       <img src="https://img.shields.io/github/v/release/你的用户名/dengzhou-no6-high?color=6366f1&style=for-the-badge&logo=github" alt="最新版本" />
     </a>
-    <a href="https://github.com/你的用户名/dengzhou-no6-high/stargazers">
+    <a href="https://feiyang-sudo.github.io/dz6g/stargazers">
       <img src="https://img.shields.io/github/stars/你的用户名/dengzhou-no6-high?color=yellow&style=for-the-badge&logo=starship" alt="Stars" />
     </a>
     <img src="https://img.shields.io/badge/建校-1999年-blue?style=for-the-badge" alt="建校时间" />
