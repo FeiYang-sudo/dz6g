@@ -25,7 +25,7 @@
 
   <br>
 
-  <img src="https://raw.githubusercontent.com/你的用户名/dengzhou-no6-high/main/assets/banner-school.jpg" 
+  <img src="./image/qq.jpg" 
        alt="学校全景" width="800" style="border-radius:16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);"/>
 
 </div>
