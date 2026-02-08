@@ -70,13 +70,16 @@
 ## 🚀 快速预览网站
 
 ```bash
-# 本地预览（推荐使用现代浏览器）
-# 方法1：使用 VS Code + Live Server 插件打开 index.html
+#方法1 网址预览(点击即用)
+#https://feiyang-sudo.github.io/dz6g/index.html
 
-# 方法2：使用 Python 快速启动服务器
+# 本地预览（推荐使用现代浏览器）
+# 方法2：使用 VS Code + Live Server 插件打开 index.html
+
+# 方法3：使用 Python 快速启动服务器
 python -m http.server 8000
 # 然后访问 http://localhost:8000
 
-# 方法3：使用 Node.js http-server
+# 方法4：使用 Node.js http-server
 npx http-server -p 8080
 # 访问 http://localhost:8080
