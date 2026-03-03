@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- 核心首页（规范写法，无 index.html 后缀，GitHub Pages 自动重定向） -->
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/</loc>
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 当前唯一实际页面 -->
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/index.html</loc>
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- 从页面锚点/提及直接衍生 -->
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/#about</loc>
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/school-intro.html</loc>  <!-- 学校简介独立页 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/campus-scenery.html</loc>  <!-- 校园风光独立页或图库 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/admissions.html</loc>  <!-- 招生简章/招生信息 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>  <!-- 招生季变化较频繁 -->
+        <priority>0.92</priority>
+    </url>
+
+    <!-- 典型中国高中官网常见栏目（强烈推荐未来添加） -->
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/news.html</loc>  <!-- 新闻中心/校园动态 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/teachers.html</loc>  <!-- 师资队伍/教师风采 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.78</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/culture.html</loc>  <!-- 校园文化/德育天地 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/party.html</loc>  <!-- 党建工作/党团建设 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.65</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/history.html</loc>  <!-- 学校历史/沿革 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.60</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/contact.html</loc>  <!-- 联系我们/招生咨询 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- 资源类页面（未来可放 PDF、图片等） -->
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/images/</loc>
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.50</priority>
+    </url>
+
+    <url>
+        <loc>https://feiyang-sudo.github.io/dz6g/files/</loc>  <!-- 招生简章 PDF、通知文件等 -->
+        <lastmod>2026-03-02</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.55</priority>
+    </url>
+
+</urlset>
