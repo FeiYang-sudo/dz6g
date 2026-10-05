@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>邮件发送动效预览</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;padding:18px 14px 60px;font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#4a4438;
+  background:radial-gradient(ellipse 80% 60% at 20% 15%, rgba(255,250,240,.95) 0%, transparent 65%),
+             radial-gradient(ellipse 55% 45% at 85% 80%, rgba(232,218,190,.35) 0%, transparent 60%),
+             linear-gradient(165deg,#fbfaf7 0%,#f3f1ec 50%,#eae7e0 100%) fixed}
+h1{font-size:17px;margin:0 0 4px;color:#3a3529}
+.sub{font-size:12px;color:#9a9284;margin:0 0 18px}
+.sec{background:rgba(255,255,255,.72);border:1px solid rgba(190,180,160,.35);border-radius:14px;padding:14px;margin-bottom:16px;
+  box-shadow:0 1px 3px rgba(120,105,75,.06),0 8px 24px rgba(120,105,75,.07)}
+.sec h2{font-size:14px;margin:0 0 3px;color:#3a3529}
+.sec p.tip{font-size:12px;color:#9a9284;margin:0 0 10px}
+.bar{text-align:right;margin-bottom:10px}
+.replay{display:inline-block;font-size:12px;padding:5px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid rgba(201,169,110,.5);color:#8a6f42;background:rgba(201,169,110,.09)}
+.replay:active{background:rgba(201,169,110,.2)}
+.Button{display:inline-block;font-size:13px;font-weight:600;line-height:1.5;padding:8px 13px;border-radius:8px;cursor:pointer;font-family:inherit;
+  background:linear-gradient(170deg,#ffffff 0%,#faf9f6 55%,#f2efe9 100%);border:1px solid rgba(180,170,150,.32);color:#4a4438;
+  box-shadow:inset 0 1px 0 #fff,0 1px 3px rgba(120,105,75,.08)}
+.Button--primary{background:linear-gradient(150deg,#c9a96e 0%,#b8915a 55%,#a37e4b 100%)!important;border:1px solid rgba(255,240,210,.6);
+  color:#fff;text-shadow:0 1px 2px rgba(90,65,30,.35);box-shadow:inset 0 1px 0 rgba(255,245,225,.45),0 4px 14px rgba(170,135,75,.30)}
+.Button--block{display:block;width:100%}
+.Button--link{background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:#8a6f42;padding:2px 4px}
+.Form-group{margin-bottom:14px}
+.Form-controls{text-align:center}
+.label{display:block;font-size:12px;font-weight:600;margin-bottom:5px;color:#5c5546}
+.FormControl{display:block;width:100%;height:38px;padding:8px 13px;font-size:14px;font-family:inherit;color:#3a3529;
+  background:#fff;border:1px solid rgba(180,170,150,.45);border-radius:8px;outline:none}
+.FormControl:focus{border-color:rgba(201,169,110,.8)}
+.helpText{font-size:14px;line-height:1.5em;color:#8d8577;margin:0;text-align:left}
+.Modal{background:#fff;border:1px solid rgba(190,180,160,.4);border-radius:14px;overflow:hidden;
+  box-shadow:0 4px 28px rgba(120,105,75,.16)}
+.Modal-header{padding:16px 20px 0;text-align:center}
+.Modal-title{font-size:16px;margin:0;color:#3a3529}
+.Modal-body{padding:18px 22px}
+.Modal-footer{padding:0 20px 20px;text-align:center;font-size:12px;color:#9a9284}
+.Form--centered{max-width:340px;margin:0 auto}
+.App-notices{margin-bottom:4px}
+.Alert{border-radius:10px;padding:11px 14px;line-height:1.55;font-size:13px;
+  background:rgba(201,169,110,.10);border:1px solid rgba(201,169,110,.36);color:#6b5c40}
+.App-notices .Alert--emailConfirmation .Button--link{font-size:13px;margin-left:4px;text-decoration:underline}
+.fa-check{font-style:normal}
+/* LoadingIndicator 只用于触发 :has()，视觉上不可见（真实 Flarum 里是灰色小圈） */
+.LoadingIndicator-container{display:inline-block;width:0;height:0;overflow:hidden}
+</style>
+<link rel="stylesheet" href="/dz6g-mail-anim.css?v=2">
+</head><body>
+<h1>邮件发送动效预览</h1>
+<p class="sub">结构与论坛真实页面一致 · 手机上点着看</p>
+
+<div class="sec">
+  <h2>① 注册后的验证提示条</h2>
+  <p class="tip">进页面时从上方滑下淡入。点「重新发送验证邮件」→ 金色小环 → 金色打勾。</p>
+  <div class="bar"><span class="replay" onclick="mountAlert()">重放</span></div>
+  <div id="alertHost"></div>
+</div>
+
+<div class="sec">
+  <h2>② 注册弹窗</h2>
+  <p class="tip">点「注册」→ 文字变淡 + 金色细环转圈（发完邮件才跳走）。</p>
+  <div class="bar"><span class="replay" onclick="mountSignup()">重放</span></div>
+  <div id="signupHost"></div>
+</div>
+
+<div class="sec">
+  <h2>③ 忘记密码</h2>
+  <p class="tip">点「重置密码」→ 转圈 → 信封弹出来、飞走 → 提示文字淡入上滑。</p>
+  <div class="bar"><span class="replay" onclick="mountForgot()">重放</span></div>
+  <div id="forgotHost"></div>
+</div>
+
+<script>
+var LI='<div class="LoadingIndicator-container LoadingIndicator-container--inline LoadingIndicator-container--small"><div class="LoadingIndicator"></div></div>';
+var FORGOT_SUCCESS="<div class=\"Modal-body\"><div class=\"Form Form--centered\"><p class=\"helpText\">\u5982\u679c\u60a8\u8f93\u5165\u7684\u7535\u5b50\u90ae\u4ef6\u5df2\u5728\u672c\u7ad9\u6ce8\u518c\u8fc7\uff0c\u6211\u4eec\u5c06\u5411\u5176\u53d1\u9001\u4e00\u5c01\u542b\u6709\u91cd\u7f6e\u5bc6\u7801\u94fe\u63a5\u7684\u90ae\u4ef6\u3002\u82e5\u672a\u6536\u5230\u8bf7\u68c0\u67e5\u5783\u573e\u7bb1\u3002</p><div class=\"Form-group Form-controls\"><button class=\"Button Button--primary Button--block\" type=\"button\"><span class=\"Button-label\"><span class=\"Button-labelText\">\u5173\u95ed</span></span></button></div></div></div>";
+function setLoading(btn,on){
+  if(!btn)return;
+  if(on){btn.disabled=true;if(!btn.querySelector('.LoadingIndicator-container'))btn.insertAdjacentHTML('beforeend',LI);}
+  else{btn.disabled=false;var e=btn.querySelector('.LoadingIndicator-container');if(e)e.remove();}
+}
+/* ① 提示条：重放 + 重新发送 */
+function mountAlert(){
+  var host=document.getElementById('alertHost');
+  host.innerHTML="<div class=\"App-notices\"><div class=\"Alert Alert--emailConfirmation\"><div class=\"container\">\u6211\u4eec\u5df2\u5411 <strong>abc@qq.com</strong> \u53d1\u9001\u4e86\u4e00\u5c01\u9a8c\u8bc1\u90ae\u4ef6<button class=\"Button Button--link\" data-act=\"resend\" type=\"button\"><span class=\"Button-label\"><span class=\"Button-labelText\">\u91cd\u65b0\u53d1\u9001\u9a8c\u8bc1\u90ae\u4ef6</span></span></button></div></div></div>";
+  var b=host.querySelector('[data-act=resend]');
+  b.addEventListener('click',function(){
+    if(b.disabled)return;
+    setLoading(b,true);
+    setTimeout(function(){
+      b.innerHTML='<span class="Button-label"><i class="fas fa-check">\u2713</i> <span class="Button-labelText">发送</span></span>';
+      b.disabled=true;b.style.pointerEvents='none';
+    },1400);
+  });
+}
+/* ② 注册 */
+function mountSignup(){
+  var host=document.getElementById('signupHost');
+  host.innerHTML="<div class=\"Modal Modal--small SignUpModal\" data-role=\"signup\"><div class=\"Modal-header\"><h3 class=\"Modal-title\">\u6ce8\u518c</h3></div><div class=\"Modal-body\"><form class=\"Form Form--centered\" data-act=\"signupform\"><div class=\"Form-group\"><label class=\"label\">\u7528\u6237\u540d</label><input class=\"FormControl\" type=\"text\" value=\"\u5c0f\u660e\"></div><div class=\"Form-group\"><label class=\"label\">\u90ae\u7bb1</label><input class=\"FormControl\" type=\"email\" value=\"abc@qq.com\"></div><div class=\"Form-group\"><label class=\"label\">\u5bc6\u7801</label><input class=\"FormControl\" type=\"password\" value=\"12345678\"></div><div class=\"Form-group Form-controls\"><button class=\"Button Button--primary Button--block\" type=\"submit\" data-act=\"signupbtn\"><span class=\"Button-label\"><span class=\"Button-labelText\">\u6ce8\u518c</span></span></button></div></form></div><div class=\"Modal-footer\">\u5df2\u6709\u8d26\u53f7\uff1f<button class=\"Button Button--link\" type=\"button\">\u767b\u5f55</button></div></div>";
+  var f=host.querySelector('[data-act=signupform]');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=host.querySelector('[data-act=signupbtn]');
+    if(btn.disabled)return;
+    setLoading(btn,true);
+    setTimeout(function(){setLoading(btn,false);},1700);
+  });
+}
+/* ③ 忘记密码 */
+function mountForgot(){
+  var host=document.getElementById('forgotHost');
+  host.innerHTML="<div class=\"Modal Modal--small ForgotPasswordModal\" data-role=\"forgot\"><div class=\"Modal-header\"><h3 class=\"Modal-title\">\u91cd\u7f6e\u5bc6\u7801</h3></div><div class=\"Modal-body\"><form class=\"Form Form--centered\" data-act=\"forgotform\"><p class=\"helpText\" style=\"margin-bottom:14px\">\u8bf7\u8f93\u5165\u8d26\u6237\u7684\u6ce8\u518c\u90ae\u7bb1\u5730\u5740\uff0c\u6211\u4eec\u5c06\u53d1\u9001\u91cd\u8bbe\u5bc6\u7801\u94fe\u63a5\u81f3\u8be5\u90ae\u7bb1\u3002</p><div class=\"Form-group\"><input class=\"FormControl\" type=\"email\" placeholder=\"\u90ae\u7bb1\" value=\"abc@qq.com\"></div><div class=\"Form-group Form-controls\"><button class=\"Button Button--primary Button--block\" type=\"submit\" data-act=\"forgotbtn\"><span class=\"Button-label\"><span class=\"Button-labelText\">\u91cd\u7f6e\u5bc6\u7801</span></span></button></div></form></div></div>";
+  var f=host.querySelector('[data-act=forgotform]');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=host.querySelector('[data-act=forgotbtn]');
+    if(btn.disabled)return;
+    setLoading(btn,true);
+    setTimeout(function(){
+      host.querySelector('[data-role=forgot] .Modal-body').outerHTML=FORGOT_SUCCESS;
+    },1500);
+  });
+}
+/* 给录屏用：把所有动画冻结到第 ms 毫秒 */
+window.dz6gFreeze=function(ms){
+  document.getAnimations().forEach(function(a){try{a.pause();a.currentTime=ms;}catch(e){}});
+};
+window.dz6gResume=function(){
+  document.getAnimations().forEach(function(a){try{a.play();}catch(e){}});
+};
+mountAlert();mountSignup();mountForgot();
+</script>
+</body></html>

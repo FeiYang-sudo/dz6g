@@ -1,221 +1,259 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>邓州市第六高级中学 - 校园墙</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>邓州六高 · 校园动态</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: "Microsoft YaHei", sans-serif;
-      background: #f0f2f5;
-      color: #1c1e21;
-      line-height: 1.5;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #1a4074;
-      color: white;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    nav {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.6rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: white;
-    }
-    .logo span { color: #4ade80; }
-    .back-btn {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-    .back-btn i { margin-right: 6px; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .container {
-      max-width: 680px;
-      margin: 90px auto 40px;
-      padding: 0 15px;
-    }
-
-    .post {
-      background: white;
-      border-radius: 12px;
-      margin-bottom: 20px;
+    html, body {
+      font-family: "Inter", "Noto Serif SC", "Microsoft YaHei", serif;
+      background: #0b0b0b;
+      color: #d4d4d4;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
       overflow: hidden;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      width: 100%; height: 100%;
     }
-    .post-header {
+
+    /* ===== 滑动容器 ===== */
+    .slider {
       display: flex;
-      align-items: center;
-      padding: 14px 16px;
+      flex-direction: column;
+      width: 100vw;
+      height: 300vh;
+      transition: transform .7s cubic-bezier(.65,0,.35,1);
     }
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #4ade80;
-      color: white;
+    .slide {
+      flex: 0 0 100vh;
+      width: 100vw;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      margin-right: 12px;
-      font-size: 1.3rem;
-    }
-    .user-info h4 {
-      font-size: 1rem;
-      margin-bottom: 2px;
-    }
-    .user-info span {
-      color: #65676b;
-      font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .post-content {
-      padding: 0 16px 12px;
-      font-size: 1.05rem;
+    /* ===== 导航 ===== */
+    header {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 0 48px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      mix-blend-mode: difference;
+    }
+    header .back {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .8rem; letter-spacing: 1px; transition: color .3s;
+    }
+    header .back:hover { color: #fff; }
+    header .back i { margin-right: 6px; }
+    .page-title {
+      font-size: .85rem; font-weight: 500; color: #f0e8d8; letter-spacing: 2px;
+    }
+    header .placeholder { width: 80px; }
+
+    .dots {
+      position: fixed; right: 40px; top: 50%; transform: translateY(-50%);
+      z-index: 100; display: flex; flex-direction: column; gap: 10px;
+    }
+    .dots button {
+      width: 6px; height: 6px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      background: transparent; cursor: pointer; transition: all .3s;
+    }
+    .dots button.active {
+      background: #c9a96e; border-color: #c9a96e;
+      height: 20px; border-radius: 3px;
     }
 
-    .post-media {
-      display: grid;
-      gap: 4px;
-    }
-    .post-media img {
-      width: 100%;
-      display: block;
-      border-radius: 8px;
-    }
-    .post-media.one   { grid-template-columns: 1fr; }
-    .post-media.two   { grid-template-columns: 1fr 1fr; }
-    .post-media.three { grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; }
-    .post-media.three img:nth-child(1) { grid-row: 1 / 3; }
-    .post-media.four  { grid-template-columns: 1fr 1fr; }
+    .hit { position:fixed; z-index:99; width:100vw; height:100vh; top:0; left:0; pointer-events:none; }
+    .hit .t, .hit .b { position:absolute; left:0; width:100%; height:20%; pointer-events:auto; }
+    .hit .t { top:0; cursor:n-resize; }
+    .hit .b { bottom:0; cursor:s-resize; }
 
-    .post-actions {
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 16px;
-      border-top: 1px solid #e4e6eb;
-      color: #65676b;
+    /* ===== SLIDE 0 - 首屏动态 ===== */
+    .slide-top {
+      flex-direction: column; gap: 24px;
+      background: radial-gradient(ellipse 70% 40% at 50% 40%, rgba(31,58,95,.15) 0%, transparent 70%), #0b0b0b;
     }
-    .action {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background 0.2s;
+    .slide-top .t { font-size:.55rem; letter-spacing:3px; color:rgba(201,169,110,.35); }
+    .slide-top h2 {
+      font-family:"Noto Serif SC",serif;
+      font-size:clamp(1.6rem,3vw,2.4rem); font-weight:600;
+      color:#f0e8d8; text-align:center;
     }
-    .action:hover {
-      background: #e4e6eb;
+    .slide-top h2 span { color:#c9a96e; }
+    .slide-top p {
+      color:rgba(255,255,255,.35); font-size:.82rem; text-align:center; max-width:440px;
     }
+    .slide-top .article-link {
+      display:inline-block; margin-top:16px;
+      padding:12px 32px; border:1px solid rgba(201,169,110,.2);
+      color:#c9a96e; text-decoration:none; font-size:.75rem;
+      letter-spacing:2px; transition:all .3s;
+    }
+    .slide-top .article-link:hover { background:rgba(201,169,110,.08); border-color:#c9a96e; }
 
-    @media (max-width: 500px) {
-      .container { margin-top: 80px; }
-      .post-media.three { grid-template-columns: 1fr; }
-      .post-media.three img:nth-child(1) { grid-row: auto; }
+    /* ===== SLIDE 1 - 帖子流 ===== */
+    .slide-posts {
+      flex-direction: column; padding: 0 8%; gap: 16px;
+    }
+    .slide-posts .t {
+      font-size:.55rem; letter-spacing:3px; color:rgba(201,169,110,.35);
+      align-self: flex-start; margin-bottom: 4px;
+    }
+    .slide-posts .post {
+      width:100%; max-width: 560px;
+      background: rgba(255,255,255,.015);
+      border: 1px solid rgba(255,255,255,.04);
+    }
+    .slide-posts .post-head {
+      display: flex; align-items: center; padding: 16px 16px 8px;
+    }
+    .slide-posts .post-head .av {
+      width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;
+      object-fit: cover; filter: grayscale(.3);
+    }
+    .slide-posts .post-head .name { font-size:.85rem; color:#f0e8d8; }
+    .slide-posts .post-head .time { font-size:.68rem; color:rgba(255,255,255,.3); margin-top:1px; }
+    .slide-posts .post-body { padding: 4px 16px 12px; font-size:.85rem; color:rgba(255,255,255,.5); }
+    .slide-posts .post-media img { width:100%; display:block; }
+    .slide-posts .post-foot {
+      display: flex; border-top: 1px solid rgba(255,255,255,.04);
+      color: rgba(255,255,255,.25); font-size:.75rem;
+    }
+    .slide-posts .post-foot > div { flex:1; text-align:center; padding:10px 0; cursor:default; }
+    .slide-posts .post-foot i { margin-right:4px; }
+
+    /* ===== SLIDE 2 - 出口 ===== */
+    .slide-exit { flex-direction:column; gap:32px; background:#080808; }
+    .slide-exit h2 { font-family:"Noto Serif SC",serif; font-size:clamp(1.3rem,2vw,1.6rem); font-weight:600; color:#f0e8d8; }
+    .slide-exit .cards { display:flex; gap:4px; }
+    .slide-exit .cards a {
+      flex:1; display:block; padding:40px 20px; text-align:center; text-decoration:none;
+      background:rgba(255,255,255,.012); border:1px solid rgba(255,255,255,.03); transition:all .3s;
+    }
+    .slide-exit .cards a:hover { background:rgba(255,255,255,.025); border-color:rgba(201,169,110,.1); }
+    .slide-exit .cards .t { font-family:'Noto Serif SC',serif; font-size:1rem; color:#f0e8d8; }
+    .slide-exit .cards .s { font-size:.6rem; color:rgba(255,255,255,.25); margin-top:4px; letter-spacing:2px; }
+    .slide-exit .btm { font-size:.75rem; color:rgba(255,255,255,.2); line-height:1.8; text-align:center; }
+    .slide-exit .btm a { color:rgba(201,169,110,.5); text-decoration:none; }
+    .slide-exit .btm a:hover { color:#c9a96e; }
+
+    @media (max-width: 768px) {
+      header { padding:0 20px; height:56px; }
+      .dots { right:16px; gap:8px; }
+      .slide-posts { padding:0 5%; }
+      .slide-exit .cards { flex-direction:column; }
+      .hit { display:none; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 返回首页</a>
-      <a href="#" class="logo">邓州<span>六高</span> 动态</a>
-    </nav>
-  </header>
+<header>
+  <a href="index.html" class="back"><i class="fas fa-arrow-left"></i> 首页</a>
+  <span class="page-title">校 园 动 态</span>
+  <span class="placeholder"></span>
+</header>
 
-  <div class="container">
+<div class="dots">
+  <button onclick="go(0)" class="active"></button>
+  <button onclick="go(1)"></button>
+  <button onclick="go(2)"></button>
+</div>
 
-    <!-- 示例帖子1 -->
-    <div class="post">
-      <div class="post-header">
-      <img src="./image/xh.jpg" alt="邓州六高" class="avatar">
-        <div class="user-info">
-          <h4>邓州市六高中万能墙</h4>
-          <span>2026年2月6日 · 校园</span>
-        </div>
-      </div>
-      <div class="post-content">
-        祝各位六高的学子们寒假快乐😀
-      </div>
-      <div class="post-media three">
-          </div>
-      <div class="post-actions">
-        <div class="action"><i class="far fa-heart"></i> 128</div>
-        <div class="action"><i class="far fa-comment"></i> 42</div>
-        <div class="action"><i class="far fa-share-square"></i> 分享</div>
-      </div>
-    </div>
+<div class="hit">
+  <div class="t" onclick="prev()"></div>
+  <div class="b" onclick="next()"></div>
+</div>
 
-    <!-- 示例帖子2 -->
-    <div class="post">
-      <div class="post-header">
-      <img src="./image/xh.jpg" alt="邓州六高" class="avatar">
-        <div class="user-info">
-          <h4>邓州六高中万能墙</h4>
-          <span>2026年2月7日 · 校园</span>
-        </div>
-      </div>
-      <div class="post-content">
-       
-      </div>
-      <div class="post-media two">
-        <img src="./image/tz/1.jpg" alt="足球场">
-        <img src="./image/tz/2.jpg" alt="篮球">
-      </div>
-      <div class="post-actions">
-        <div class="action"><i class="far fa-heart"></i> 89</div>
-        <div class="action"><i class="far fa-comment"></i> 31</div>
-        <div class="action"><i class="far fa-share-square"></i> 分享</div>
-      </div>
-    </div>
+<div class="slider" id="sl">
 
-    <!-- 示例帖子3 -->
-    <div class="post">
-      <div class="post-header">
-          <img src="./image/xh.jpg" alt="邓州六高" class="avatar">
-        <div class="user-info">
-          <h4>邓州市六高中微信公众号</h4>
-          <span>2026年1月16日</span>
-        </div>
-      </div>
-      <div class="post-content">
-      逐光拾艺 筑梦六高——邓州市六高中2026年校园文化艺术周活动圆满落幕
-       
-      </div>
-      <div class="post-media one">
-        <img src="./image/tz/3.png" alt="图书馆">
-      </div>
-      <div class="post-actions">
-        <div class="action"><i class="far fa-heart"></i> 67</div>
-        <div class="action"><i class="far fa-comment"></i> 19</div>
-        <div class="action"><i class="far fa-share-square"></i> 分享</div>
-      </div>
-    </div>
-
-
+  <!-- 0 首屏 -->
+  <div class="slide slide-top">
+    <div class="t">NOTICE BOARD</div>
+    <h2>校园<span>动态</span></h2>
+    <p>六高日常 · 活动通知 · 学生投稿<br>欢迎通过 QQ 3624230684 提供素材</p>
+    <a href="#" class="article-link">投稿建议 →</a>
   </div>
 
+  <!-- 1 帖子流 -->
+  <div class="slide slide-posts">
+    <div class="t">LATEST</div>
+
+    <div class="post">
+      <div class="post-head">
+        <img src="./image/xh.jpg" alt="" class="av">
+        <div>
+          <div class="name">邓州市六高中万能墙</div>
+          <div class="time">2026年2月6日</div>
+        </div>
+      </div>
+      <div class="post-body">祝各位六高的学子们寒假快乐😀 寒假作业别忘了写</div>
+      <div class="post-foot">
+        <div><i class="far fa-heart"></i> 128</div>
+        <div><i class="far fa-comment"></i> 42</div>
+        <div><i class="far fa-share-square"></i> 分享</div>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-head">
+        <img src="./image/xh.jpg" alt="" class="av">
+        <div>
+          <div class="name">邓州市六高中万能墙</div>
+          <div class="time">2026年2月7日</div>
+        </div>
+      </div>
+      <div class="post-media">
+        <img src="./image/tz/1.jpg" alt="">
+        <img src="./image/tz/2.jpg" alt="">
+      </div>
+      <div class="post-foot">
+        <div><i class="far fa-heart"></i> 89</div>
+        <div><i class="far fa-comment"></i> 31</div>
+        <div><i class="far fa-share-square"></i> 分享</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 出口 -->
+  <div class="slide slide-exit">
+    <h2>了解更多</h2>
+    <div class="cards">
+      <a href="index.html"><div class="t">返回首页</div><div class="s">Home →</div></a>
+      <a href="https://mp.weixin.qq.com/s/JWQTy6WUNgPJQFJm4NoJDA"><div class="t">招生简章</div><div class="s">Admissions →</div></a>
+      <a href="#"><div class="t">投稿建议</div><div class="s">QQ 3624230684</div></a>
+    </div>
+    <div class="btm">
+      更多内容持续更新中 · <a href="index.html">返回首页</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let i=0; const n=3;
+  const sl=document.getElementById('sl');
+  const db=document.querySelectorAll('.dots button');
+  function go(idx){
+    if(idx<0)idx=0; if(idx>=n)idx=n-1; i=idx;
+    sl.style.transform=`translateY(-${idx*100}vh)`;
+    db.forEach((b,k)=>b.classList.toggle('active',k===idx));
+  }
+  function next(){go(i+1)}
+  function prev(){go(i-1)}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowDown')next();if(e.key==='ArrowUp')prev()});
+  let ty=0;
+  document.addEventListener('touchstart',e=>{ty=e.changedTouches[0].screenY});
+  document.addEventListener('touchend',e=>{const d=ty-e.changedTouches[0].screenY;if(Math.abs(d)>50)d>0?next():prev()});
+  let wt;
+  document.addEventListener('wheel',e=>{if(wt)return;wt=setTimeout(()=>{wt=null},700);if(e.deltaY>0)next();else prev()});
+</script>
 </body>
 </html>

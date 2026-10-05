@@ -1,123 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首页 -->
+  <url>
+    <loc>https://dz6g.ccwu.cc/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-    <!-- 首页（核心页面，最高优先级） -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <keywords>邓州市第六高级中学,邓州市第六高级中学官网,邓州六高中,河南省优质高中,湍河之滨高中,厚德博学励志笃行,以学生发展为本,公办普通高中,邓州高中招生</keywords>
-    </url>
+  <!-- 通知公告 -->
+  <url>
+    <loc>https://dz6g.ccwu.cc/tz.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-    <!-- index.html 页面（当前唯一实际内容页） -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/index.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.95</priority>
-        <keywords>邓州市第六高级中学,邓州六高,优质高中,学校简介,校园风光,现代教学楼,宽敞运动场,图书馆,食堂,湍河国家级湿地公园,邓州市人民公园</keywords>
-    </url>
+  <!-- 资料下载 -->
+  <url>
+    <loc>https://dz6g.ccwu.cc/my.html</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
-    <!-- 学校简介相关 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/school-intro.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-        <keywords>邓州市第六高级中学简介,邓州六高中历史,公办高中,湍河之滨,厚德博学励志笃行,素质教育,以学生发展为本,教育教学质量全市前列</keywords>
-    </url>
-
-    <!-- 招生信息（高优先级，因为招生需求大） -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/admissions.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.92</priority>
-        <keywords>邓州市第六高级中学招生,邓州六高招生简章,高中招生,邓州高中录取,优质高中招生,圆梦理想大学,高考冲刺</keywords>
-    </url>
-
-    <!-- 校园风光 / 图库 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/campus-scenery.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-        <keywords>邓州市第六高级中学校园,六高校园风光,现代教学楼,宽敞运动场,藏书丰富图书馆,整洁明亮食堂,环境优美高中,湍河湿地公园旁学校</keywords>
-    </url>
-
-    <!-- 新闻动态（适合频繁更新） -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/news.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.80</priority>
-        <keywords>邓州市第六高级中学新闻,六高校园动态,高中教育新闻,邓州教育资讯,学校活动,高考信息</keywords>
-    </url>
-
-    <!-- 师资队伍 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/teachers.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.78</priority>
-        <keywords>邓州市第六高级中学师资,六高教师队伍,优秀教师,特级教师,高级教师,邓州高中老师</keywords>
-    </url>
-
-    <!-- 校园文化 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/culture.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-        <keywords>邓州市第六高级中学文化,六高校训,厚德博学励志笃行,校园文化,德育教育,素质教育高中</keywords>
-    </url>
-
-    <!-- 党建工作 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/party.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
-        <keywords>邓州市第六高级中学党建,六高党支部,党员教育,学校党建工作</keywords>
-    </url>
-
-    <!-- 学校历史 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/history.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.60</priority>
-        <keywords>邓州市第六高级中学历史,六高沿革,建校历史,邓州教育发展</keywords>
-    </url>
-
-    <!-- 联系我们 -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/contact.html</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-        <keywords>邓州市第六高级中学联系方式,六高招生咨询,学校地址,雷锋路高中,邓州六高电话</keywords>
-    </url>
-
-    <!-- 资源目录（图片/文件） -->
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/images/</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.50</priority>
-        <keywords>邓州市第六高级中学图片,六高校园照片,教学楼图片,运动场照片,图书馆图片</keywords>
-    </url>
-
-    <url>
-        <loc>https://feiyang-sudo.github.io/dz6g/files/</loc>
-        <lastmod>2026-03-02</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.55</priority>
-        <keywords>邓州市第六高级中学文件,招生简章PDF,学校通知,高中资料下载</keywords>
-    </url>
-
+  <!-- 校园墙论坛 -->
+  <url>
+    <loc>https://dz6g.ccwu.cc/board/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

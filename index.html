@@ -1,506 +1,477 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>邓州市第六高级中学</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
- 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
-      line-height: 1.7;
-      color: #333;
-      background: #f8f9fc;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="msvalidate.01" content="8D7E20EA455412670D3ECC7B72257084" />
+<title>邓州市第六高级中学</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    font-family: "Inter", "Noto Serif SC", serif;
+    background: #0b0b0b; color: #d4d4d4;
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+    overflow: hidden; width:100%; height:100%;
+  }
 
-    /* 导航 */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      transition: all 0.4s;
-    }
-    header.scrolled {
-      background: rgba(26, 64, 116, 0.95);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-    nav {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 80px;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-    }
-    .logo span {
-      color: #4ade80;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: #4ade80;
-      transition: width 0.3s;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #4ade80;
-    }
+  /* ===== 液态玻璃光斑 ===== */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(201,169,110,.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 70%, rgba(201,169,110,.04) 0%, transparent 60%);
+    animation: liquidShift 12s ease-in-out infinite alternate;
+  }
+  @keyframes liquidShift {
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(2%,1%) scale(1.05); }
+    100% { transform: translate(-1%,-2%) scale(1.02); }
+  }
 
-    /* 首屏大图 */
-    .hero {
-      height: 100vh;
-      min-height: 700px;
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
-                  url('./image/gq.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-    }
-    .hero-content {
-      max-width: 900px;
-      padding: 0 5%;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      margin-bottom: 1.2rem;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    }
-    .hero h1 span {
-      color: #4ade80;
-    }
-    .hero p {
-      font-size: 1.4rem;
-      margin-bottom: 2.5rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 38px;
-      background: #4ade80;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-size: 1.15rem;
-      font-weight: bold;
-      transition: all 0.3s;
-      box-shadow: 0 6px 20px rgba(74,222,128,0.4);
-    }
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(74,222,128,0.55);
-      background: #22c55e;
-    }
+  /* ===== 滑动容器 ===== */
+  .slider {
+    display: flex; flex-direction: column;
+    width: 100vw; height: 400vh;
+    transition: transform .8s cubic-bezier(.65,0,.35,1);
+    position: relative; z-index: 1;
+  }
+  .slide {
+    flex: 0 0 100vh; width: 100vw;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
 
-    /* 内容区域 */
-    section {
-      padding: 100px 5%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2.8rem;
-      margin-bottom: 1.2rem;
-      color: #1a4074;
-      position: relative;
-    }
-    h2::after {
-      content: '';
-      width: 80px;
-      height: 4px;
-      background: #4ade80;
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
+  /* ===== 导航 ===== */
+  header {
+    position: fixed; top:0; width:100%; z-index:100;
+    padding:0 48px; height:64px;
+    display:flex; align-items:center; justify-content:space-between;
+    mix-blend-mode: difference;
+  }
+  header .back {
+    color:rgba(255,255,255,.5); text-decoration:none;
+    font-size:.8rem; letter-spacing:1px; transition:color .3s;
+  }
+  header .back:hover{color:#fff;}
+  header .back i{margin-right:6px;}
+  .page-title{font-size:.85rem;font-weight:500;color:#f0e8d8;letter-spacing:2px;}
+  header .placeholder{width:80px;}
 
-    /* 关于我们 */
-    .about {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      padding: 60px;
-      margin: 60px auto;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-      margin-top: 50px;
-    }
-    .about-text h3 {
-      color: #1a4074;
-      margin-bottom: 1.5rem;
-    }
+  .dots {
+    position:fixed; right:40px; top:50%; transform:translateY(-50%);
+    z-index:100; display:flex; flex-direction:column; gap:10px;
+  }
+  .dots button {
+    width:6px; height:6px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+    background:transparent; cursor:pointer; transition:all .3s;
+  }
+  .dots button.active {
+    background:#c9a96e; border-color:#c9a96e;
+    height:20px; border-radius:3px;
+  }
 
-    /* 校园风光卡片 */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      transition: all 0.4s;
-      background: white;
-    }
-    .card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
-    }
-    .card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      transition: transform 0.6s;
-    }
-    .card:hover img {
-      transform: scale(1.08);
-    }
-    .card-body {
-      padding: 1.8rem;
-      text-align: center;
-    }
+  .hit {
+    position:fixed; z-index:99; width:100vw; height:100vh; top:0; left:0; pointer-events:none;
+  }
+  .hit .t, .hit .b {
+    position:absolute; left:0; width:100%; height:20%; pointer-events:auto;
+  }
+  .hit .t{top:0; cursor:n-resize;}
+  .hit .b{bottom:0; cursor:s-resize;}
 
-    /* 底部 */
-    footer {
-      background: #0f172a;
-      color: #cbd5e1;
-      padding: 80px 5% 40px;
-      text-align: center;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 3rem;
-      max-width: 1400px;
-      margin: 0 auto 60px;
-      text-align: left;
-    }
-    .footer-grid h4 {
-      color: white;
-      margin-bottom: 1.4rem;
-    }
-    .social a {
-      color: #94a3b8;
-      font-size: 1.6rem;
-      margin-right: 1.2rem;
-      transition: 0.3s;
-    }
-    .social a:hover {
-      color: #4ade80;
-      transform: translateY(-3px);
-    }
+  /* ===== SLIDE 0 —— 首屏 ===== */
+  .slide-0 {
+    flex-direction:column; gap:20px;
+    background:radial-gradient(ellipse 70% 40% at 50% 40%, rgba(31,58,95,.12) 0%, transparent 70%), #0b0b0b;
+  }
+  .slide-0 .t{font-size:.55rem;letter-spacing:3px;color:rgba(201,169,110,.35);}
+  .slide-0 h2{
+    font-family:"Noto Serif SC",serif;
+    font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;
+    color:#f0e8d8;text-align:center;
+  }
+  .slide-0 h2 span{color:#c9a96e;}
+  .slide-0 p{
+    color:rgba(255,255,255,.35);font-size:.82rem;text-align:center;max-width:440px;
+  }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none; /* 这里可以以后加汉堡菜单 */
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero h1 {
-        font-size: 3.5rem;
-      }
-    }
-  .menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: white;
+  /* ===== 校徽旋转 ===== */
+  /* ===== 校徽旋转 ===== */
+  .orbit{position:relative;width:540px;height:540px;margin:24px auto}
+  .orbit-center{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:200px;height:200px;border-radius:50%;
+    border:2px solid rgba(201,169,110,.35);
+    overflow:hidden;z-index:2;
+    background:rgba(201,169,110,.08);backdrop-filter:blur(6px);
+  }
+  .orbit-center img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+
+  /* 轨道环 */
+  .orbit-ring{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(201,169,110,.1);
+    pointer-events:none;
+    width:560px;height:560px;
+  }
+  .orbit-ring:nth-child(2){width:500px;height:500px;border-color:rgba(201,169,110,.08);}
+  .orbit-ring:nth-child(3){width:440px;height:440px;border-color:rgba(201,169,110,.07);}
+  .orbit-ring:nth-child(4){width:380px;height:380px;border-color:rgba(201,169,110,.06);}
+  .orbit-ring:nth-child(5){width:300px;height:300px;border-color:rgba(201,169,110,.05);}
+  .orbit-ring:nth-child(6){width:250px;height:250px;border-color:rgba(201,169,110,.04);}
+  @keyframes ringSpin1{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes ringSpin2{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(-360deg)}}
+  @keyframes ringSpin3{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(720deg)}}
+  @keyframes ringSpin4{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(-720deg)}}
+  @keyframes ringSpin5{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(1080deg)}}
+  @keyframes ringSpin6{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(-1080deg)}}
+  .orbit-ring:nth-child(1){animation:ringSpin1 60s linear infinite;}
+  .orbit-ring:nth-child(2){animation:ringSpin2 80s linear infinite;}
+  .orbit-ring:nth-child(3){animation:ringSpin3 100s linear infinite;}
+  .orbit-ring:nth-child(4){animation:ringSpin4 120s linear infinite;}
+  .orbit-ring:nth-child(5){animation:ringSpin5 140s linear infinite;}
+  .orbit-ring:nth-child(6){animation:ringSpin6 160s linear infinite;}
+
+  .orbit-item{
+    position:absolute;top:50%;left:50%;margin:-18px 0 0 -18px;
+    width:auto;height:auto;
+    padding:2px 6px;
+    font-size:.8rem;font-weight:500;color:rgba(201,169,110,.9);
+    display:flex;align-items:center;justify-content:center;
+    white-space:nowrap;letter-spacing:1px;
+    text-shadow:0 0 12px rgba(201,169,110,.15);
+  }
+  /* 环绕：从左右两端出发，绕整圈 */
+  @keyframes orbitL_1{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(280px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(280px) rotate(-270deg)}}
+  @keyframes orbitL_2{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(250px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(250px) rotate(-270deg)}}
+  @keyframes orbitL_3{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(220px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(220px) rotate(-270deg)}}
+  @keyframes orbitL_4{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(190px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(190px) rotate(-270deg)}}
+  @keyframes orbitL_5{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(165px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(165px) rotate(-270deg)}}
+  @keyframes orbitL_6{from{transform:translate(-50%,-50%) rotate(-90deg) translateX(135px) rotate(90deg)}to{transform:translate(-50%,-50%) rotate(270deg) translateX(135px) rotate(-270deg)}}
+  @keyframes orbitR_1{from{transform:translate(-50%,-50%) rotate(90deg) translateX(280px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(280px) rotate(-450deg)}}
+  @keyframes orbitR_2{from{transform:translate(-50%,-50%) rotate(90deg) translateX(250px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(250px) rotate(-450deg)}}
+  @keyframes orbitR_3{from{transform:translate(-50%,-50%) rotate(90deg) translateX(220px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(220px) rotate(-450deg)}}
+  @keyframes orbitR_4{from{transform:translate(-50%,-50%) rotate(90deg) translateX(190px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(190px) rotate(-450deg)}}
+  @keyframes orbitR_5{from{transform:translate(-50%,-50%) rotate(90deg) translateX(165px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(165px) rotate(-450deg)}}
+  @keyframes orbitR_6{from{transform:translate(-50%,-50%) rotate(90deg) translateX(135px) rotate(-90deg)}to{transform:translate(-50%,-50%) rotate(450deg) translateX(135px) rotate(-450deg)}}
+  .orbit-item-left{animation:orbitL_1 22s linear infinite}
+  .orbit-item-left:nth-child(7){animation-name:orbitL_2;animation-duration:26s}
+  .orbit-item-left:nth-child(8){animation-name:orbitL_3;animation-duration:30s}
+  .orbit-item-left:nth-child(9){animation-name:orbitL_4;animation-duration:34s}
+  .orbit-item-left:nth-child(10){animation-name:orbitL_5;animation-duration:28s}
+  .orbit-item-left:nth-child(11){animation-name:orbitL_6;animation-duration:32s}
+  .orbit-item-right{animation:orbitR_1 24s linear infinite}
+  .orbit-item-right:nth-child(13){animation-name:orbitR_2;animation-duration:28s}
+  .orbit-item-right:nth-child(14){animation-name:orbitR_3;animation-duration:32s}
+  .orbit-item-right:nth-child(15){animation-name:orbitR_4;animation-duration:36s}
+  .orbit-item-right:nth-child(16){animation-name:orbitR_5;animation-duration:30s}
+  .orbit-item-right:nth-child(17){animation-name:orbitR_6;animation-duration:34s}
+
+  /* ===== SLIDE 1 —— 办学理念 ===== */
+  .slide-1 {
+    flex-direction:column; gap:25px; padding:0 8%;
+    background:radial-gradient(ellipse 50% 30% at 50% 60%, rgba(201,169,110,.04) 0%, transparent 60%);
+  }
+  .slide-1 .label{font-size:.5rem;letter-spacing:3px;color:rgba(201,169,110,.35);}
+  .slide-1 h2{font-family:"Noto Serif SC",serif;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:600;color:#f0e8d8;text-align:center;line-height:1.5;}
+  .slide-1 h2 span{color:#c9a96e;}
+  .slide-1 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:520px;}
+  .slide-1 .grid-item{
+    background:rgba(255,255,255,.02);border:1px solid rgba(201,169,110,.1);
+    border-radius:4px;padding:18px 16px;text-align:center;
+  }
+  .slide-1 .grid-item .num{font-family:"Noto Serif SC",serif;font-size:1.3rem;font-weight:700;color:#c9a96e;}
+  .slide-1 .grid-item .desc{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:4px;letter-spacing:1px;}
+
+  /* ===== SLIDE 2 —— 师资 / 管理 ===== */
+  .slide-2 {flex-direction:column;gap:20px;padding:0 8%;background:radial-gradient(ellipse 50% 40% at 30% 50%, rgba(201,169,110,.03) 0%, transparent 60%);}
+  .slide-2 .label{font-size:.5rem;letter-spacing:3px;color:rgba(201,169,110,.35);}
+  .slide-2 h2{font-family:"Noto Serif SC",serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:600;color:#f0e8d8;text-align:center;line-height:1.5;}
+  .slide-2 .cards{display:flex;gap:10px;width:100%;max-width:560px;}
+  .slide-2 .card{
+    flex:1;background:rgba(255,255,255,.012);border:1px solid rgba(255,255,255,.03);
+    padding:24px 16px;text-align:center;border-radius:4px;transition:all .3s;
+  }
+  .slide-2 .card:hover{background:rgba(255,255,255,.025);border-color:rgba(201,169,110,.1);}
+  .slide-2 .card .t{font-family:"Noto Serif SC",serif;font-size:.95rem;color:#f0e8d8;margin-bottom:6px;}
+  .slide-2 .card .s{font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:1px;}
+  .slide-2 .stats{display:flex;gap:16px;width:100%;max-width:560px;flex-wrap:wrap;justify-content:center;}
+  .slide-2 .stat{text-align:center;padding:12px 16px;}
+  .slide-2 .stat .v{font-family:"Noto Serif SC",serif;font-size:1.4rem;font-weight:700;color:#c9a96e;}
+  .slide-2 .stat .l{font-size:.55rem;color:rgba(255,255,255,.35);letter-spacing:2px;margin-top:2px;}
+
+  /* ===== SLIDE 3 —— 出口 / 联系我们 ===== */
+  .slide-3{flex-direction:column;gap:28px;padding:0 8%;background:#080808;}
+  .slide-3 h2{font-family:"Noto Serif SC",serif;font-size:clamp(1.3rem,2vw,1.6rem);font-weight:600;color:#f0e8d8;}
+  .slide-3 .links{display:flex;gap:4px;}
+  .slide-3 .links a{
+    flex:1;display:block;padding:36px 20px;text-align:center;text-decoration:none;
+    background:rgba(255,255,255,.012);border:1px solid rgba(255,255,255,.03);transition:all .3s;
+  }
+  .slide-3 .links a:hover{background:rgba(255,255,255,.025);border-color:rgba(201,169,110,.1);}
+  .slide-3 .links .t{font-family:"Noto Serif SC",serif;font-size:.95rem;color:#f0e8d8;}
+  .slide-3 .links .s{font-size:.6rem;color:rgba(255,255,255,.25);margin-top:4px;letter-spacing:2px;}
+  .slide-3 .btm{font-size:.72rem;color:rgba(255,255,255,.2);line-height:1.8;text-align:center;}
+  .slide-3 .btm a{color:rgba(201,169,110,.5);text-decoration:none;}
+  .slide-3 .btm a:hover{color:#c9a96e;}
+
+  @media (max-width:768px){
+    header{padding:0 20px;height:56px;}
+    .dots{right:16px;gap:8px;}
+    .slide-1 .grid{grid-template-columns:1fr 1fr;}
+    .slide-2 .cards{flex-direction:column;}
+    .hit{display:none;}
+    .orbit{width:390px;height:390px;}
+    .orbit-ring{width:360px;height:360px;}
+    .orbit-ring:nth-child(2){width:350px;height:350px;}
+    .orbit-ring:nth-child(3){width:310px;height:310px;}
+    .orbit-ring:nth-child(4){width:270px;height:270px;}
+    .orbit-ring:nth-child(5){width:240px;height:240px;}
+    .orbit-ring:nth-child(6){width:200px;height:200px;}
+    .orbit-center{width:110px;height:110px;}
+    .orbit-item{font-size:.7rem;}
+  }
+
+  /* ===== 一言卡片 ===== */
+  .hitokoto {
+    position: fixed; right: 20px; bottom: 20px; z-index: 90;
+    max-width: 300px; padding: 12px 16px;
+    background: rgba(10,10,10,.55);
+    border: 1px solid rgba(201,169,110,.25);
+    border-left: 3px solid #c9a96e;
+    border-radius: 8px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    color: rgba(255,255,255,.75); font-size: .75rem; line-height: 1.7;
+    transition: opacity .4s, transform .4s;
+  }
+  .hitokoto.hidden { opacity: 0; transform: translateY(10px); pointer-events: none; }
+  .hitokoto .hk-text::before { content: '「'; color: #c9a96e; }
+  .hitokoto .hk-text::after { content: '」'; color: #c9a96e; }
+  .hitokoto .hk-refresh {
+    position: absolute; top: 6px; right: 8px;
+    background: none; border: none; color: rgba(255,255,255,.35);
+    font-size: .7rem; cursor: pointer; padding: 2px 4px;
+  }
+  .hitokoto .hk-refresh:hover { color: #c9a96e; }
+  @media (max-width: 480px) {
+    .hitokoto { max-width: 200px; font-size: .68rem; right: 12px; bottom: 12px; }
+  }
+</style>
+<script src="/liuli-ui/liuli-ui.js"></script>
+<script>
+// WebGL 兜底：不支持时隐藏玻璃组件，显示普通链接
+if (!window.WebGLRenderingContext || !document.createElement('canvas').getContext('webgl')) {
+  window.__NO_GL = true;
 }
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background: rgba(26, 64, 116, 0.98);
-    padding: 20px 0;
-  }
-  
-  .nav-links.active {
-    display: flex;
-  }
-}
-  </style>
+</script>
 </head>
 <body>
 
-  <header id="header">
-    <nav>
-      <a href="#" class="logo">邓州<span>六高</span></a>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" class="active">首页</a>
-        <a href="#about">学校简介</a>
-        <a href="#gallery">校园风光</a>
-        <a href="#contact">联系我们</a>
-        <a href="tz.html"><a href="#" onclick="showModalWithRedirect('tz.html');" data-href="posts.html">校园动态</a>
-      </div>
-      <!-- 汉堡菜单按钮，只在手机显示 -->
-  <div class="menu-toggle" id="menuToggle">
-    <i class="fas fa-bars"></i>
-  </div>
-    </nav>
-  </header>
-
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>邓州市<span>第六高级中学</span></h1>
-      <p>传承百年文脉 · 培养时代新人 · 奔赴星辰大海</p>
-      <a href="#about" class="btn">了解更多</a>
-    </div>
-  </section>
-
-  <section id="about">
-    <h2>学校简介</h2>
-    <div class="about">
-      <div class="about-grid">
-        <div class="about-text">
-          <h3>坐落于湍河之滨的优质高中</h3>
-          <p>邓州市第六高级中学是一所位于河南省南阳市邓州市的公办普通高级中学。学校西邻邓州市人民公园，东接编外雷锋团展览馆，北靠湍河国家级湿地公园，环境优美，交通便利。</p>
-          <p>学校秉承“厚德博学·励志笃行”的校训，坚持“以学生发展为本”的办学理念，全面实施素质教育，教育教学质量稳居全市前列，是广大学子圆梦理想大学的首选学校之一。</p>
-          <br/>
-          <a href="#" class="btn" style="background:#1a4074;">查看招生简章</a>
-        </div>
-        <div>
-          <img src="./image/qq.jpg" 
-               alt="校园教学楼" style="border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.15); width:100%;">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" style="background:#f1f5f9;">
-    <h2>校园风光</h2>
-    <div class="gallery">
-      <div class="card">
-        <img src="./image/jxl.jpg" alt="教学楼">
-        <div class="card-body">
-          <h3>现代教学楼</h3>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./image/cc.jpg" alt="操场">
-        <div class="card-body">
-          <h3>宽敞运动场</h3>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="图书馆">
-        <div class="card-body">
-          <h3>藏书丰富的图书馆</h3>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="食堂">
-        <div class="card-body">
-          <h3>整洁明亮的食堂</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <div class="footer-grid">
-      <div>
-        <h4>邓州市第六高级中学</h4>
-        <p>地址：河南省南阳市邓州市北环路东侧</p>
-        <p>电话：0377-62195218</p>
-        <p>邮编：474150</p>
-      </div>
-      <div>
-        <h4>快速链接</h4>
-        <p><a href="" style="color:#94a3b8; text-decoration:none;">学校章程</a></p>
-        <p><a href="#" style="color:#94a3b8; text-decoration:none;">招生简章</a></p>
-        <p><a href="#" style="color:#94a3b8; text-decoration:none;">校园官网</a></p>
-      </div>
-      <div>
-        <h4>关注我们</jpgh4>
-        <div class="social">
-          <a href="https://mp.weixin.qq.com/mp/wappoc_appmsgcaptcha?poc_token=HIVuh2mj2p2mgBHv6A40A_pA563GAOI1Dun6kfpZ&target_url=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2Ftdc1pzVx0wDpAMfbxyNmJA"><i class="fab fa-weixin"></i></a>
-          <a href="https://qm.qq.com/q/S4yjfkXwem"><i class="fab fa-qq"></i></a>
-          <a href="my.html"><i class="fab fa-weibo"></i></a>
-        </div>
-      </div>
-    </div>
-    <p style="margin-top:40px; font-size:0.95rem;">&copy; 2026 邓州市第六高级中学 学生自制网站，仅供学习交流使用</p>
-  </footer>
-
-  <script>
-    // 滚动后导航变色
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  // 新增的汉堡菜单代码
-      const menuToggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
-
-      menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
-  </script>
-<!-- 弹窗结构 -->
-<div id="comingSoonModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>功能提示</h2>
-    <p>由于资金和技术问题帖子暂只能管理员手动添加 管理:qq 
-3624230684 可提供建议
-</p>
-    <p>感谢您的关注与支持！</p>
-    <button id="closeModalBtn" class="btn">继续进入</button>
-  </div>
+<!-- 一言卡片 -->
+<div class="hitokoto hidden" id="hitokoto">
+  <button class="hk-refresh" id="hkRefresh" title="换一句">↻</button>
+  <div class="hk-text" id="hkText">加载中…</div>
 </div>
 
-<style>
-  /* 弹窗样式 */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    align-items: center;
-    justify-content: center;
-  }
+<header>
+  <span class="glass-nav" id="glassNavWrap">
+    <a href="/board/" class="back" id="navBoard"><i class="fas fa-comment-dots"></i> 校园墙</a>
+    <a href="#" onclick="navigator.clipboard.writeText('招生咨询：赵老师 15837757522');alert('已复制招生电话');" class="back" style="font-size:.65rem;" id="navPhone"><i class="fas fa-phone"></i> 招生咨询</a>
+  </span>
+  <span class="page-title">邓 州 市 第 六 高 级 中 学</span>
+  <span class="glass-nav" id="glassNavEl" style="width:230px;height:44px;mix-blend-mode:normal;display:flex;align-items:center;justify-content:center;"></span>
+</header>
 
-  .modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    position: relative;
-  }
+<div class="dots">
+  <button onclick="go(0)" class="active"></button>
+  <button onclick="go(1)"></button>
+  <button onclick="go(2)"></button>
+  <button onclick="go(3)"></button>
+</div>
 
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #aaa;
-  }
+<div class="hit">
+  <div class="t" onclick="prev()"></div>
+  <div class="b" onclick="next()"></div>
+</div>
 
-  .close-btn:hover,
-  .close-btn:focus {
-    color: #333;
-  }
+<div class="slider" id="sl">
 
-  .modal h2 {
-    margin-bottom: 15px;
-    color: #1a4074;
-  }
+  <!-- SLIDE 0：首屏 -->
+  <div class="slide slide-0">
+    <div class="t">DENGZHOU NO.6 SENIOR HIGH SCHOOL</div>
+    <h2>邓州市<span>第六高级中学</span></h2>
+    <p>创建于 1999 年 · 城区公办普通高中<br>西邻人民公园 · 北依湍河湿地</p>
+    <div class="orbit">
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-center"><img src="./image/xh.jpg" alt="六高"></div>
+      <div class="orbit-item orbit-item-left">智慧黑板</div>
+      <div class="orbit-item orbit-item-left">双温空调</div>
+      <div class="orbit-item orbit-item-left">三层餐厅</div>
+      <div class="orbit-item orbit-item-left">八人公寓</div>
+      <div class="orbit-item orbit-item-left">独立浴室</div>
+      <div class="orbit-item orbit-item-left">标准运动场</div>
+      <div class="orbit-item orbit-item-right">实验楼</div>
+      <div class="orbit-item orbit-item-right">微机室</div>
+      <div class="orbit-item orbit-item-right">学术报告厅</div>
+      <div class="orbit-item orbit-item-right">图书室</div>
+      <div class="orbit-item orbit-item-right">标准化教室</div>
+      <div class="orbit-item orbit-item-right">多媒体展台</div>
+    </div>
+  </div>
 
-  .modal p {
-    margin-bottom: 20px;
-    color: #555;
-  }
+  <!-- SLIDE 1：办学理念 -->
+  <div class="slide slide-1">
+    <div class="label">SCHOOL PHILOSOPHY</div>
+    <h2>以立德树人为根本<br>打造 <span>有温度 · 有特色</span> 的优质普高</h2>
+    <div class="grid">
+      <div class="grid-item"><div class="num">40%</div><div class="desc">本科上线率</div></div>
+      <div class="grid-item"><div class="num">1100</div><div class="desc">2026 年招生计划</div></div>
+      <div class="grid-item"><div class="num">54</div><div class="desc">智慧教室</div></div>
+      <div class="grid-item"><div class="num">8</div><div class="desc">标准八人间 · 独立浴室</div></div>
+    </div>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;max-width:440px;">
+      高效课堂 · 培优补弱 · 一生一档 · 个性规划 · 多元发展
+    </p>
+  </div>
 
-  #closeModalBtn {
-    padding: 10px 30px;
-    background: #4ade80;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-  }
+  <!-- SLIDE 2：师资 / 管理 -->
+  <div class="slide slide-2">
+    <div class="label">TEACHERS & MANAGEMENT</div>
+    <h2>雄厚师资 · 精细管理 · <span>低进优出</span></h2>
+    <div class="stats">
+      <div class="stat"><div class="v">240+</div><div class="l">专任教师</div></div>
+      <div class="stat"><div class="v">114</div><div class="l">中高级教师</div></div>
+      <div class="stat"><div class="v">56</div><div class="l">省市骨干</div></div>
+      <div class="stat"><div class="v">120+</div><div class="l">省级竞赛一等奖</div></div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="t">高效课堂</div><div class="s">全面推行课堂改革</div></div>
+      <div class="card"><div class="t">个性规划</div><div class="s">一生一档跟踪管理</div></div>
+      <div class="card"><div class="t">特色课程</div><div class="s">日语 · 俄语 · 美术 · 音乐</div></div>
+    </div>
+  </div>
 
-  #closeModalBtn:hover {
-    background: #22c55e;
-  }
-</style>
+  <!-- SLIDE 3：联系我们 -->
+  <div class="slide slide-3">
+    <h2>联系我们</h2>
+    <div class="links">
+      <a href="tz.html"><div class="t">📢 通知公告</div><div class="s">Notice Board</div></a>
+      <a href="/board/"><div class="t">💬 校园墙</div><div class="s">Moments</div></a>
+      <a href="my.html"><div class="t">📁 资料下载</div><div class="s">Resources</div></a>
+    </div>
+    <div class="btm">
+      地址：河南省南阳市邓州市雷锋路5号 · 电话：0377-62195218<br>
+      招生咨询：赵老师 15837757522 / 董老师 17839563952<br>
+      <a href="javascript:;">© DZ6G · 邓州市第六高级中学 · 学生自制网站</a>
+    </div>
+  </div>
+
+</div>
 
 <script>
-// 弹窗控制
-const modal = document.getElementById('comingSoonModal');
-const closeBtn = document.querySelector('.close-btn');
-const closeModalBtn = document.getElementById('closeModalBtn');
+  let current = 0;
+  const total = 4;
+  const sl = document.getElementById('sl');
 
-let redirectUrl = './tz.html';  // 临时存跳转链接
-
-function showModalWithRedirect(url) {
-  redirectUrl = url;
-  modal.style.display = 'flex';
-}
-
-function closeModal() {
-  modal.style.display = 'none';
-  if (redirectUrl) {
-    window.location.href = redirectUrl;  // 关闭后跳转
-    redirectUrl = '';  // 清空
+  function update() {
+    sl.style.transform = 'translateY(-' + (current * 100 / total) + '%)';
+    document.querySelectorAll('.dots button').forEach((b, i) => {
+      b.classList.toggle('active', i === current);
+    });
   }
-}
 
-closeBtn.onclick = closeModal;
-closeModalBtn.onclick = closeModal;
-
-// 点击外面关闭，但不跳转（可选，根据需求）
-window.onclick = function(event) {
-  if (event.target === modal) {
-    modal.style.display = 'none';
+  function go(n) {
+    if (n < 0 || n >= total) return;
+    current = n; update();
   }
-}
+
+  function next() { go(current + 1); }
+  function prev() { go(current - 1); }
+
+  // 键盘
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prev();
+  });
+
+  // 滚轮
+  let ticking = false;
+  document.addEventListener('wheel', e => {
+    if (ticking) return;
+    ticking = true;
+    if (e.deltaY > 0) next(); else prev();
+    setTimeout(() => ticking = false, 800);
+  }, { passive: true });
+
+  // 触摸
+  let touchStartY = 0;
+  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dy) > 40) {
+      if (dy < 0) next(); else prev();
+    }
+  }, { passive: true });
+</script>
+<script>
+// 琉璃 UI 玻璃按钮组
+(function(){
+  var wrap = document.getElementById('glassNavEl');
+  var fallback = document.getElementById('glassNavWrap');
+  if (!wrap) return;
+  if (window.__NO_GL) { wrap.style.display = 'none'; return; }
+  // WebGL 正常：隐藏旧链接，显示玻璃按钮
+  if (fallback) fallback.style.display = 'none';
+  var glass = document.createElement('liquid-glass');
+  glass.id = 'glassNav';
+  glass.setAttribute('mode', 'buttons');
+  glass.style.width = '100%';
+  glass.style.height = '100%';
+  wrap.appendChild(glass);
+  glass.gooseButtons([
+    { id: 'board',  label: '校园墙', style: 'blue' },
+    { id: 'phone',  label: '招生咨询', style: 'orange' }
+  ]);
+  glass.addEventListener('lg-buttontap', function(e){
+    if (e.detail.id === 'board') { location.href = '/board/'; }
+    if (e.detail.id === 'phone') {
+      navigator.clipboard.writeText('招生咨询：赵老师 15837757522');
+      alert('已复制招生电话');
+    }
+  });
+})();
+
+// 一言卡片
+(function(){
+  var box = document.getElementById('hitokoto');
+  var txt = document.getElementById('hkText');
+  var btn = document.getElementById('hkRefresh');
+  if (!box || !txt) return;
+  var shown = false;
+  function show(){ if(!shown){ box.classList.remove('hidden'); shown = true; } }
+  function fetchQuote(){
+    txt.textContent = '加载中…';
+    fetch('https://api.shanhe.kim/API/%E9%9A%8F%E6%9C%BA%E4%B8%80%E8%A8%80.php?type=json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && d.text) { txt.textContent = d.text; show(); }
+      })
+      .catch(function(){ txt.textContent = '天意从来高难问。'; show(); });
+  }
+  if (btn) btn.addEventListener('click', fetchQuote);
+  // 页面加载 1.5s 后显示，滚动交互 12s 后自动淡出
+  setTimeout(fetchQuote, 1500);
+  setTimeout(function(){ box.classList.add('hidden'); }, 20000);
+})();
 </script>
 </body>
 </html>
