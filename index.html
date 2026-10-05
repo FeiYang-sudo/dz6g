@@ -261,7 +261,7 @@
     .hitokoto { max-width: 200px; font-size: .68rem; right: 12px; bottom: 12px; }
   }
 </style>
-<script src="/liuli-ui/liuli-ui.js"></script>
+<script src="./liuli-ui/liuli-ui.js"></script>
 <script>
 // WebGL 兜底：不支持时隐藏玻璃组件，显示普通链接
 if (!window.WebGLRenderingContext || !document.createElement('canvas').getContext('webgl')) {
@@ -279,7 +279,7 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
 
 <header>
   <span class="glass-nav" id="glassNavWrap">
-    <a href="/board/" class="back" id="navBoard"><i class="fas fa-comment-dots"></i> 校园墙</a>
+    <a href="https://dz6g.ccwu.cc/board/" class="back" id="navBoard"><i class="fas fa-comment-dots"></i> 校园墙</a>
     <a href="#" onclick="navigator.clipboard.writeText('招生咨询：赵老师 15837757522');alert('已复制招生电话');" class="back" style="font-size:.65rem;" id="navPhone"><i class="fas fa-phone"></i> 招生咨询</a>
   </span>
   <span class="page-title">邓 州 市 第 六 高 级 中 学</span>
@@ -365,7 +365,7 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
     <h2>联系我们</h2>
     <div class="links">
       <a href="tz.html"><div class="t">📢 通知公告</div><div class="s">Notice Board</div></a>
-      <a href="/board/"><div class="t">💬 校园墙</div><div class="s">Moments</div></a>
+      <a href="https://dz6g.ccwu.cc/board/"><div class="t">💬 校园墙</div><div class="s">Moments</div></a>
       <a href="my.html"><div class="t">📁 资料下载</div><div class="s">Resources</div></a>
     </div>
     <div class="btm">
@@ -442,7 +442,7 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
     { id: 'phone',  label: '招生咨询', style: 'orange' }
   ]);
   glass.addEventListener('lg-buttontap', function(e){
-    if (e.detail.id === 'board') { location.href = '/board/'; }
+    if (e.detail.id === 'board') { location.href = 'https://dz6g.ccwu.cc/board/'; }
     if (e.detail.id === 'phone') {
       navigator.clipboard.writeText('招生咨询：赵老师 15837757522');
       alert('已复制招生电话');

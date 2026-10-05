@@ -12,11 +12,11 @@
   </p>
 
   <p>
-    <a href="https://feiyang-sudo.github.io/dz6g/releases">
-      <img src="https://img.shields.io/github/v/release/你的用户名/dengzhou-no6-high?color=6366f1&style=for-the-badge&logo=github" alt="最新版本" />
+    <a href="https://github.com/FeiYang-sudo/dz6g/releases">
+      <img src="https://img.shields.io/github/v/release/FeiYang-sudo/dz6g?color=6366f1&style=for-the-badge&logo=github" alt="最新版本" />
     </a>
-    <a href="https://feiyang-sudo.github.io/dz6g/stargazers">
-      <img src="https://img.shields.io/github/stars/你的用户名/dengzhou-no6-high?color=yellow&style=for-the-badge&logo=starship" alt="Stars" />
+    <a href="https://github.com/FeiYang-sudo/dz6g/stargazers">
+      <img src="https://img.shields.io/github/stars/FeiYang-sudo/dz6g?color=yellow&style=for-the-badge&logo=starship" alt="Stars" />
     </a>
     <img src="https://img.shields.io/badge/建校-1999年-blue?style=for-the-badge" alt="建校时间" />
     <img src="https://img.shields.io/badge/学生-3800%2B-success?style=for-the-badge" alt="在校生" />
