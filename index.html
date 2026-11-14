@@ -483,24 +483,24 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
   <div class="dz6g-notice">
     <div class="dz6g-rule"></div>
     <p class="dz6g-kicker">Site Notice</p>
-    <h2 id="dz6gNoticeTitle">本站即将下架</h2>
+    <h2 id="dz6gNoticeTitle">主站及论坛即将下架</h2>
     <p class="dz6g-sub">邓州市第六高级中学 · 站内通知</p>
 
     <p class="dz6g-body">
-      因内容调整，本站将在近期<span>停止对外服务</span>，届时页面将无法访问。<br>
-      这不是故障，也不是被攻击 —— 是主动安排。
+      因内容调整，<span>主站与论坛</span>将在近期停止对外服务，届时将无法访问。<br>
+      <b style="color:#c9a96e">GitHub 镜像站仍会保留</b>，内容可以继续在那里查看。
     </p>
 
     <div class="dz6g-meta">
       <div><b>下架时间</b>2026 年 11 月 8 日起</div>
-      <div><b>影响范围</b>本站全部页面</div>
-      <div><b>恢复时间</b>另行通知</div>
+      <div><b>影响范围</b>主站 dz6g.ccwu.cc + 论坛 /board</div>
+      <div><b>镜像站</b><a href="https://feiyang-sudo.github.io/dz6g/" target="_blank" rel="noopener">feiyang-sudo.github.io/dz6g</a>（保留）</div>
     </div>
 
     <p class="dz6g-contact">有需要联系：<a href="mailto:3624230684@qq.com">3624230684@qq.com</a></p>
 
     <button id="dz6gNoticeClose" type="button">我知道了，继续访问</button>
-    <p class="dz6g-hint">（本提示仅在本次浏览期间出现一次）</p>
+    <p class="dz6g-hint">（每次进入都会提示，可随时关闭）</p>
   </div>
 </div>
 
@@ -553,6 +553,7 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
   }
   #dz6gNoticeClose:hover{filter:brightness(1.06);}
   #dz6gNoticeClose:active{transform:scale(.985);}
+  .dz6g-meta a{color:#c9a96e;text-decoration:none;border-bottom:1px solid rgba(201,169,110,.35);word-break:break-all;}
   .dz6g-hint{font-size:13px;color:#8d8a82;text-align:center;margin:11px 0 0;letter-spacing:.04em;}
   @media(max-width:420px){
     .dz6g-notice{padding:26px 22px 20px;border-radius:14px;}
@@ -563,18 +564,12 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
 <script>
 (function () {
   var ENABLED = true;                  // ← 想彻底停用改成 false
-  var KEY = 'dz6g-notice-dismissed';   // 只在本次会话/24 小时内记住
   if (!ENABLED) return;
 
   var el = document.getElementById('dz6gNotice');
   var btn = document.getElementById('dz6gNoticeClose');
   if (!el || !btn) return;
 
-  // 24 小时内不再打扰（想每次都提示 → 把下面 if 删掉）
-  try {
-    var last = +localStorage.getItem(KEY) || 0;
-    if (Date.now() - last < 24 * 3600 * 1000) { el.remove(); return; }
-  } catch (e) {}
 
   var prevOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
@@ -584,7 +579,6 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
     el.classList.remove('on');
     el.classList.add('off');
     document.body.style.overflow = prevOverflow;
-    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
     setTimeout(function () { el.parentNode && el.parentNode.removeChild(el); }, 420);
   }
 
