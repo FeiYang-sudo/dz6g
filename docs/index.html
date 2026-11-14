@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>本站已下架 · 邓州市第六高级中学</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0b0b">
+<style>
+  :root{
+    --bg:#0b0b0b;
+    --bg-alt:#111112;
+    --gold:#c9a96e;
+    --gold-dim:#8d7548;
+    --text:#e8e6e1;
+    --dim:#9d9a92;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 极淡的金色光晕，两团，缓慢呼吸 */
+  body::before,body::after{
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.16;
+    pointer-events:none;
+    background:radial-gradient(circle,var(--gold),transparent 70%);
+  }
+  body::before{width:520px;height:520px;top:-220px;right:-160px;animation:breathe 13s ease-in-out infinite;}
+  body::after{width:420px;height:420px;bottom:-200px;left:-140px;opacity:.07;animation:breathe 17s ease-in-out infinite reverse;}
+  @keyframes breathe{0%,100%{opacity:.10;transform:scale(1);}50%{opacity:.20;transform:scale(1.08);}}
+
+  .card{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:520px;
+    text-align:left;
+  }
+
+  /* 顶部细金线 */
+  .rule{
+    width:44px;height:2px;
+    background:linear-gradient(90deg,var(--gold),transparent);
+    margin-bottom:26px;
+  }
+
+  .kicker{
+    font-size:12px;
+    letter-spacing:.28em;
+    color:var(--gold-dim);
+    margin-bottom:14px;
+    text-transform:uppercase;
+  }
+
+  h1{
+    font-size:clamp(30px,7vw,42px);
+    font-weight:700;
+    letter-spacing:.04em;
+    line-height:1.28;
+    margin-bottom:8px;
+    background:linear-gradient(180deg,#fff 0%,var(--gold) 135%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .sub{
+    font-size:14px;
+    color:var(--dim);
+    letter-spacing:.06em;
+    margin-bottom:34px;
+  }
+
+  .body-text{
+    font-size:16px;
+    line-height:1.95;
+    color:var(--text);
+    opacity:.9;
+    margin-bottom:30px;
+  }
+  .body-text span{color:var(--gold);}
+
+  .meta{
+    border-left:2px solid var(--gold-dim);
+    padding-left:16px;
+    margin-bottom:34px;
+  }
+  .meta-row{
+    display:flex;
+    font-size:13.5px;
+    line-height:2.1;
+    color:var(--dim);
+  }
+  .meta-row b{
+    color:var(--text);
+    font-weight:500;
+    min-width:74px;
+    opacity:.85;
+  }
+
+  .contact{
+    font-size:13.5px;
+    color:var(--dim);
+    line-height:1.9;
+  }
+  .contact a{
+    color:var(--gold);
+    text-decoration:none;
+    border-bottom:1px solid rgba(201,169,110,.35);
+    padding-bottom:1px;
+  }
+  .contact a:hover{border-bottom-color:var(--gold);}
+
+  footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.06);
+    font-size:11.5px;
+    color:#6f6c66;
+    letter-spacing:.08em;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="rule"></div>
+    <p class="kicker">Site Notice</p>
+    <h1>本站已下架</h1>
+    <p class="sub">邓州市第六高级中学 · 网站镜像</p>
+
+    <p class="body-text">
+      因内容调整，本站（含镜像页）已<span>暂停对外访问</span>。<br>
+      这不是故障，也不是被攻击 —— 是我主动关的。
+    </p>
+
+    <div class="meta">
+      <div class="meta-row"><b>下架时间</b>2026 年 11 月 8 日</div>
+      <div class="meta-row"><b>影响范围</b>本站全部页面</div>
+      <div class="meta-row"><b>恢复时间</b>另行通知</div>
+    </div>
+
+    <p class="contact">
+      有需要联系我：<a href="mailto:3624230684@qq.com">3624230684@qq.com</a>
+    </p>
+
+    <footer>
+      <span>dz6g.ccwu.cc</span>
+      <span>2026 · 飞扬</span>
+    </footer>
+  </main>
+</body>
+</html>
