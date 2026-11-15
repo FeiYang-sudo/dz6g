@@ -368,6 +368,33 @@ if (!window.WebGLRenderingContext || !document.createElement('canvas').getContex
       <a href="https://dz6g.ccwu.cc/board/"><div class="t">💬 校园墙</div><div class="s">Moments</div></a>
       <a href="my.html"><div class="t">📁 资料下载</div><div class="s">Resources</div></a>
     </div>
+
+    <!-- 往期回顾（历史版本） -->
+    <style>
+      .past-wrap{margin:34px 0 6px;padding-top:22px;border-top:1px solid rgba(201,169,110,.16);}
+      .past-title{font-size:12px;letter-spacing:.26em;color:#8d7548;text-transform:uppercase;margin:0 0 12px;}
+      .past-list{display:flex;flex-wrap:wrap;gap:8px;}
+      .past-list a{
+        display:inline-flex;align-items:center;gap:6px;
+        padding:7px 13px;border-radius:999px;
+        font-size:12.5px;letter-spacing:.03em;text-decoration:none;
+        color:#d9d5cc;background:rgba(255,255,255,.045);
+        border:1px solid rgba(201,169,110,.22);
+        transition:background .22s,border-color .22s,color .22s,transform .12s;
+      }
+      .past-list a:hover{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.5);color:#f0e7d6;}
+      .past-list a:active{transform:scale(.97);}
+      .past-list a i{font-style:normal;font-size:11px;color:#8d7548;}
+      .past-list a:hover i{color:#c9a96e;}
+    </style>
+    <div class="past-wrap">
+      <p class="past-title">往期回顾 · Archive</p>
+      <div class="past-list">
+        <a href="archive/v1-初代主页.html" target="_blank" rel="noopener">初代主页 <i>2026.07</i></a>
+        <a href="archive/v2-上传版.html" target="_blank" rel="noopener">第二版 <i>2026.08</i></a>
+        <a href="archive/邮箱动画-demo.html" target="_blank" rel="noopener">邮箱动画 Demo <i>彩蛋</i></a>
+      </div>
+    </div>
     <div class="btm">
       地址：河南省南阳市邓州市雷锋路5号 · 电话：0377-62195218<br>
       招生咨询：赵老师 15837757522 / 董老师 17839563952<br>
