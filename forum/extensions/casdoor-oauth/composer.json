@@ -1,0 +1,29 @@
+{
+    "name": "dz6g/casdoor-oauth",
+    "description": "Casdoor OAuth login for Flarum",
+    "type": "flarum-extension",
+    "require": {
+        "flarum/core": "^2.0",
+        "fof/oauth": "^2.0@beta",
+        "league/oauth2-client": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DZ6G\\CasdoorOAuth\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Casdoor OAuth",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-id-card",
+                "backgroundColor": "#24292e",
+                "color": "#fff"
+            }
+        },
+        "flarum-composer": {
+            "ignore": true
+        }
+    }
+}

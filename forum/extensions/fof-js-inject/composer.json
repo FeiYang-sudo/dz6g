@@ -1,0 +1,14 @@
+{
+    "name": "dz6g/fof-js-inject",
+    "type": "flarum-extension",
+    "description": "Injects fof/oauth JS files",
+    "require": {
+        "flarum/core": "^2.0.0"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "FoF JS inject",
+            "category": "feature"
+        }
+    }
+}

@@ -5,3 +5,9 @@
 # 系统杂项
 .DS_Store
 Thumbs.db
+
+# 私人内容（绝不入库）
+diary/index.html
+forum/config.php
+forum/storage/
+forum/vendor/

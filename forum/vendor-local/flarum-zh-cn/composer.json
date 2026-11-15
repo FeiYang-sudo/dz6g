@@ -1,0 +1,15 @@
+{
+    "name": "local/flarum-zh-cn",
+    "description": "\u4e2d\u6587\u8bed\u8a00\u5305 - \u7b80\u4f53\u4e2d\u6587",
+    "type": "flarum-locale",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^2.0"
+    },
+    "extra": {
+        "flarum-locale": {
+            "code": "zh",
+            "title": "\u7b80\u4f53\u4e2d\u6587"
+        }
+    }
+}

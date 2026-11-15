@@ -1,0 +1,6 @@
+fof-oauth:
+  forum:
+    log_in:
+      with_casdoor_button: "使用 Casdoor 登录"
+    providers:
+      casdoor: "Casdoor"
